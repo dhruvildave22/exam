@@ -1,3 +1,14 @@
-Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+Exam::Application.routes.draw do
+  get "sessions/new"
+  resources :sessions, only: [:new, :create, :destroy]
+ 
+  
+  match "login" => "sessions#new",:as => "login"
+  match "logout" => "sessions#destroy"
+  match "attempts" => "attempts#index"
+  get "home/index"
+  root :to => "home#index"
+
+  
 end
